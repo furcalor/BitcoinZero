@@ -1,5 +1,5 @@
-#ifndef ZCOIN_EXODUS_RPCVALUES_H
-#define ZCOIN_EXODUS_RPCVALUES_H
+#ifndef BITCOINZERO_EXODUS_RPCVALUES_H
+#define BITCOINZERO_EXODUS_RPCVALUES_H
 
 class CPubKey;
 class CTransaction;
@@ -45,4 +45,4 @@ SigmaDenomination ParseSigmaDenomination(const UniValue& value);
 
 }
 
-#endif // ZCOIN_EXODUS_RPCVALUES_H
+#endif // BITCOINZERO_EXODUS_RPCVALUES_H

@@ -1,5 +1,5 @@
-#ifndef ZCOIN_EXODUS_RPCREQUIREMENTS_H
-#define ZCOIN_EXODUS_RPCREQUIREMENTS_H
+#ifndef BITCOINZERO_EXODUS_RPCREQUIREMENTS_H
+#define BITCOINZERO_EXODUS_RPCREQUIREMENTS_H
 
 #include "property.h"
 #include "sigmaprimitives.h"
@@ -36,4 +36,4 @@ void RequireExistingDenomination(PropertyId property, SigmaDenomination denomina
 // Checks for MetaDEx orders for cancel operations
 
 
-#endif // ZCOIN_EXODUS_RPCREQUIREMENTS_H
+#endif // BITCOINZERO_EXODUS_RPCREQUIREMENTS_H

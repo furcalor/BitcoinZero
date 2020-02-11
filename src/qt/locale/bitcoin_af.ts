@@ -72,7 +72,7 @@
     </message>
 </context>
 <context>
-    <name>ZcoinGUI</name>
+    <name>BitcoinZeroGUI</name>
     <message>
         <source>Synchronizing with network...</source>
         <translation>Netwerk-sinkronisasie...</translation>
@@ -158,8 +158,8 @@
         <translation>Besig met herindeksering van blokke op hardeskyf...</translation>
     </message>
     <message>
-        <source>Send coins to a Zcoin address</source>
-        <translation>Stuur munte na 'n Zcoin adres</translation>
+        <source>Send coins to a BitcoinZero address</source>
+        <translation>Stuur munte na 'n BitcoinZero adres</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -170,8 +170,8 @@
         <translation>Verander die wagwoord wat ek vir kodifikasie van my beursie gebruik</translation>
     </message>
     <message>
-        <source>Zcoin</source>
-        <translation>Zcoin</translation>
+        <source>BitcoinZero</source>
+        <translation>BitcoinZero</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -194,12 +194,12 @@
         <translation>Kodifiseer die private sleutes wat aan jou beursie gekoppel is.</translation>
     </message>
     <message>
-        <source>Sign messages with your Zcoin addresses to prove you own them</source>
-        <translation>Onderteken boodskappe met u Zcoin adresse om u eienaarskap te bewys</translation>
+        <source>Sign messages with your BitcoinZero addresses to prove you own them</source>
+        <translation>Onderteken boodskappe met u BitcoinZero adresse om u eienaarskap te bewys</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified Zcoin addresses</source>
-        <translation>Verifieër boodskappe om seker te maak dat dit met die gespesifiseerde Zcoin adresse</translation>
+        <source>Verify messages to ensure they were signed with specified BitcoinZero addresses</source>
+        <translation>Verifieër boodskappe om seker te maak dat dit met die gespesifiseerde BitcoinZero adresse</translation>
     </message>
     <message>
         <source>&amp;Help</source>
@@ -210,8 +210,8 @@
         <translation>Orebalk</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and zcoin: URIs)</source>
-        <translation>Versoek betalings (genereer QR-kodes en zcoin: URI's)</translation>
+        <source>Request payments (generates QR codes and BitcoinZero: URIs)</source>
+        <translation>Versoek betalings (genereer QR-kodes en BitcoinZero: URI's)</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -222,8 +222,8 @@
         <translation>Vertoon die lys van gebruikte ontvangers-adresse en etikette</translation>
     </message>
     <message>
-        <source>Open a zcoin: URI or payment request</source>
-        <translation>Skep 'n zcoin: URI of betalingsversoek</translation>
+        <source>Open a BitcoinZero: URI or payment request</source>
+        <translation>Skep 'n BitcoinZero: URI of betalingsversoek</translation>
     </message>
     <message>
         <source>Indexing blocks on disk...</source>
@@ -708,10 +708,10 @@
     <name>WalletView</name>
     </context>
 <context>
-    <name>zcoin-core</name>
+    <name>BitcoinZero-Core</name>
     <message>
-        <source>Zcoin Core</source>
-        <translation>Zcoin Kern</translation>
+        <source>BitcoinZero Core</source>
+        <translation>BitcoinZero Kern</translation>
     </message>
     <message>
         <source>Information</source>

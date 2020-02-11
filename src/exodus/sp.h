@@ -1,5 +1,5 @@
-#ifndef ZCOIN_EXODUS_SP_H
-#define ZCOIN_EXODUS_SP_H
+#ifndef BITCOINZERO_EXODUS_SP_H
+#define BITCOINZERO_EXODUS_SP_H
 
 #include "log.h"
 #include "persistence.h"
@@ -315,4 +315,4 @@ string to_string(SigmaStatus status);
 
 } // namespace std
 
-#endif // ZCOIN_EXODUS_SP_H
+#endif // BITCOINZERO_EXODUS_SP_H

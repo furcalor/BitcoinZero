@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>664</width>
-    <height>497</height>
+    <height>474</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -367,12 +367,6 @@
       <layout class="QVBoxLayout" name="verticalLayout_2">
        <item>
         <widget class="QFrame" name="leftFrame">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
          <property name="frameShape">
           <enum>QFrame::StyledPanel</enum>
          </property>
@@ -417,36 +411,6 @@
               <property name="verticalSpacing">
                <number>12</number>
               </property>
-              <item row="0" column="0">
-               <widget class="QLabel" name="divisible">
-                <property name="text">
-                 <string>Divisible:</string>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="1">
-               <widget class="QLabel" name="divisibleLabel">
-                <property name="font">
-                 <font>
-                  <weight>75</weight>
-                  <bold>true</bold>
-                 </font>
-                </property>
-                <property name="text">
-                 <string>No</string>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="0">
-               <widget class="QLabel" name="issuancetype">
-                <property name="text">
-                 <string>Issuance Type:</string>
-                </property>
-               </widget>
-              </item>
               <item row="1" column="1">
                <widget class="QLabel" name="issuanceTypeLabel">
                 <property name="font">
@@ -460,13 +424,6 @@
                 </property>
                 <property name="alignment">
                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="0">
-               <widget class="QLabel" name="ecosystem">
-                <property name="text">
-                 <string>Ecosystem:</string>
                 </property>
                </widget>
               </item>
@@ -486,13 +443,6 @@
                 </property>
                </widget>
               </item>
-              <item row="3" column="0">
-               <widget class="QLabel" name="totaltokens">
-                <property name="text">
-                 <string>Total Tokens:</string>
-                </property>
-               </widget>
-              </item>
               <item row="3" column="1">
                <widget class="QLabel" name="totalTokensLabel">
                 <property name="font">
@@ -509,6 +459,50 @@
                 </property>
                 <property name="alignment">
                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QLabel" name="divisibleLabel">
+                <property name="font">
+                 <font>
+                  <weight>75</weight>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>No</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="0">
+               <widget class="QLabel" name="divisible">
+                <property name="text">
+                 <string>Divisible:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="issuancetype">
+                <property name="text">
+                 <string>Issuance Type:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="0">
+               <widget class="QLabel" name="ecosystem">
+                <property name="text">
+                 <string>Ecosystem:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="0">
+               <widget class="QLabel" name="totaltokens">
+                <property name="text">
+                 <string>Total Tokens:</string>
                 </property>
                </widget>
               </item>
@@ -535,40 +529,7 @@
                 </property>
                </widget>
               </item>
-              <item row="5" column="0">
-               <widget class="QLabel" name="sigmaStatus">
-                <property name="text">
-                 <string>Sigma Status:</string>
-                </property>
-               </widget>
-              </item>
-              <item row="5" column="1">
-               <widget class="QLabel" name="sigmaStatusLabel">
-                <property name="font">
-                 <font>
-                  <weight>75</weight>
-                  <bold>true</bold>
-                 </font>
-                </property>
-                <property name="text">
-                 <string>SoftDisabled</string>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                </property>
-               </widget>
-              </item>
              </layout>
-            </item>
-            <item>
-             <widget class="QTableWidget" name="denominationTable">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-             </widget>
             </item>
            </layout>
           </item>

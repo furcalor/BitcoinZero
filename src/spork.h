@@ -16,28 +16,35 @@ class CSporkMessage;
     Don't ever reuse these IDs for other sporks
     - This would result in old clients getting confused about which spork is for what
 */
-static const int SPORK_START                                            = 10001;
-static const int SPORK_END                                              = 10013;
+static const int SPORK_START                                             = 10001;
+static const int SPORK_END                                               = 10020;
 
-static const int SPORK_2_INSTANTSEND_ENABLED                            = 10001;
-static const int SPORK_3_INSTANTSEND_BLOCK_FILTERING                    = 10002;
-static const int SPORK_5_INSTANTSEND_MAX_VALUE                          = 10004;
-static const int SPORK_8_ZNODE_PAYMENT_ENFORCEMENT                 = 10007;
-static const int SPORK_9_SUPERBLOCKS_ENABLED                            = 10008;
-static const int SPORK_10_ZNODE_PAY_UPDATED_NODES                  = 10009;
-static const int SPORK_12_RECONSIDER_BLOCKS                             = 10011;
-static const int SPORK_13_OLD_SUPERBLOCK_FLAG                           = 10012;
-static const int SPORK_14_REQUIRE_SENTINEL_FLAG                         = 10013;
+static const int SPORK_2_INSTANTSEND_ENABLED                             = 10001;
+static const int SPORK_3_INSTANTSEND_BLOCK_FILTERING                     = 10002;
+static const int SPORK_4_VERSION_ON                                      = 10003;
+static const int SPORK_5_INSTANTSEND_MAX_VALUE                           = 10004;
+static const int SPORK_6_RECONSIDER_BLOCKS                               = 10005;
+static const int SPORK_12_F_PAYMENT_START                                = 10012;
+static const int SPORK_13_F_PAYMENT_ENFORCEMENT                          = 10013;
+static const int SPORK_14_BZNODE_PAYMENT_START                           = 10014;
+static const int SPORK_15_BZNODE_PAYMENT_ENFORCEMENT                     = 10015;
+static const int SPORK_17_RECONSIDER_BLOCKS                              = 10017;
+static const int SPORK_19_SIGMA_NEW                                      = 10019;
+static const int SPORK_20_SIGMA                                          = 10020;
 
-static const int64_t SPORK_2_INSTANTSEND_ENABLED_DEFAULT                = 0;            // ON
-static const int64_t SPORK_3_INSTANTSEND_BLOCK_FILTERING_DEFAULT        = 0;            // ON
-static const int64_t SPORK_5_INSTANTSEND_MAX_VALUE_DEFAULT              = 1000;         // 1000 XZC
-static const int64_t SPORK_8_ZNODE_PAYMENT_ENFORCEMENT_DEFAULT     = 4070908800ULL;// OFF
-static const int64_t SPORK_9_SUPERBLOCKS_ENABLED_DEFAULT                = 4070908800ULL;// OFF
-static const int64_t SPORK_10_ZNODE_PAY_UPDATED_NODES_DEFAULT      = 4070908800ULL;// OFF
-static const int64_t SPORK_12_RECONSIDER_BLOCKS_DEFAULT                 = 0;            // 0 BLOCKS
-static const int64_t SPORK_13_OLD_SUPERBLOCK_FLAG_DEFAULT               = 4070908800ULL;// OFF
-static const int64_t SPORK_14_REQUIRE_SENTINEL_FLAG_DEFAULT             = 4070908800ULL;// OFF
+
+static const int64_t SPORK_2_INSTANTSEND_ENABLED_DEFAULT                 = 4070908800;   // OFF
+static const int64_t SPORK_3_INSTANTSEND_BLOCK_FILTERING_DEFAULT         = 0;            // ON
+static const int64_t SPORK_4_VERSION_ON_DEFAULT                          = 4070908800;   // OFF
+static const int64_t SPORK_5_INSTANTSEND_MAX_VALUE_DEFAULT               = 1000;         // 1000 BZX
+static const int64_t SPORK_6_RECONSIDER_BLOCKS_DEFAULT                   = 0;            // 0 BLOCKS
+static const int64_t SPORK_12_F_PAYMENT_START_DEFAULT                    = 4070908800;   // OFF
+static const int64_t SPORK_13_F_PAYMENT_ENFORCEMENT_DEFAULT              = 4070908800;   // OFF
+static const int64_t SPORK_14_BZNODE_PAYMENT_START_DEFAULT               = 4070908800;   // OFF
+static const int64_t SPORK_15_BZNODE_PAYMENT_ENFORCEMENT_DEFAULT         = 4070908800;   // OFF
+static const int64_t SPORK_17_RECONSIDER_BLOCKS_DEFAULT                  = 0;            // 0 BLOCKS
+static const int64_t SPORK_19_SIGMA_NEW_DEFAULT                          = 4070908800;   // OFF
+static const int64_t SPORK_20_SIGMA_DEFAULT                              = 4070908800;   // OFF
 
 extern std::map<uint256, CSporkMessage> mapSporks;
 

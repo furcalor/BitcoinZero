@@ -19,8 +19,9 @@
 #include "rpc/server.h"
 #include "txmempool.h"
 #include "util.h"
+#include "spork.h"
 #ifdef ENABLE_WALLET
-#include "znode-sync.h"
+#include "bznode-sync.h"
 #endif
 #include "utilstrencodings.h"
 #include "validationinterface.h"
@@ -151,6 +152,25 @@ UniValue generateBlocks(boost::shared_ptr<CReserveScript> coinbaseScript, int nG
     return blockHashes;
 }
 
+UniValue gethashespersec(const UniValue& params, bool fHelp)
+{
+    if (fHelp || params.size() != 0)
+        throw runtime_error(
+            "gethashespersec\n"
+            "\nReturns a recent hashes per second performance measurement while generating.\n"
+            "See the getgenerate and setgenerate calls to turn generation on and off.\n"
+
+            "\nResult:\n"
+            "n            (numeric) The recent hashes per second when generation is on (will return 0 if generation is off)\n"
+
+            "\nExamples:\n" +
+            HelpExampleCli("gethashespersec", "") + HelpExampleRpc("gethashespersec", ""));
+
+    if (GetTimeMillis() - nHPSTimerStart > 8000)
+        return (int64_t)0;
+    return (int64_t)dHashesPerSec;
+}
+
 UniValue getgenerate(const UniValue& params, bool fHelp)
 {
     if (fHelp || params.size() != 0)
@@ -214,7 +234,7 @@ UniValue generatetoaddress(const UniValue& params, bool fHelp)
             "\nMine blocks immediately to a specified address (before the RPC call returns)\n"
             "\nArguments:\n"
             "1. numblocks    (numeric, required) How many blocks are generated immediately.\n"
-            "2. address    (string, required) The address to send the newly generated zcoin to.\n"
+            "2. address    (string, required) The address to send the newly generated coin to.\n"
             "3. maxtries     (numeric, optional) How many iterations to try (default = 1000000).\n"
             "\nResult\n"
             "[ blockhashes ]     (array) hashes of blocks generated\n"
@@ -467,13 +487,13 @@ UniValue getblocktemplate(const UniValue& params, bool fHelp)
             "  \"curtime\" : ttt,                  (numeric) current timestamp in seconds since epoch (Jan 1 1970 GMT)\n"
             "  \"bits\" : \"xxxxxxxx\",              (string) compressed target of next block\n"
             "  \"height\" : n                      (numeric) The height of the next block\n"
-            "  \"znode\" : {                  (json object) required znode payee that must be included in the next block\n"
+            "  \"bznode\" : {                  (json object) required bznode payee that must be included in the next block\n"
             "      \"payee\" : \"xxxx\",             (string) payee address\n"
             "      \"script\" : \"xxxx\",            (string) payee scriptPubKey\n"
             "      \"amount\": n                   (numeric) required amount to pay\n"
             "  },\n"
-            "  \"znode_payments_started\" :  true|false, (boolean) true, if znode payments started\n"
-//            "  \"znode_payments_enforced\" : true|false, (boolean) true, if znode payments are enforced\n"
+            "  \"bznode_payments_started\" :  true|false, (boolean) true, if bznode payments started\n"
+//            "  \"bznode_payments_enforced\" : true|false, (boolean) true, if bznode payments are enforced\n"
             "}\n"
 
             "\nExamples:\n"
@@ -550,12 +570,12 @@ UniValue getblocktemplate(const UniValue& params, bool fHelp)
         throw JSONRPCError(RPC_INVALID_PARAMETER, "Invalid mode");
 
     if (vNodes.empty())
-        throw JSONRPCError(RPC_CLIENT_NOT_CONNECTED, "Zcoin is not connected!");
+        throw JSONRPCError(RPC_CLIENT_NOT_CONNECTED, "BitcoinZero is not connected!");
     if (IsInitialBlockDownload())
-        throw JSONRPCError(RPC_CLIENT_IN_INITIAL_DOWNLOAD, "Zcoin is downloading blocks...");
+        throw JSONRPCError(RPC_CLIENT_IN_INITIAL_DOWNLOAD, "BitcoinZero is downloading blocks...");
 
-    if (!znodeSync.IsSynced())
-        throw JSONRPCError(RPC_CLIENT_IN_INITIAL_DOWNLOAD, "Zcoin Core is syncing with network...");
+    if (!bznodeSync.IsSynced())
+        throw JSONRPCError(RPC_CLIENT_IN_INITIAL_DOWNLOAD, "BitcoinZero Core is syncing with network...");
 
     static unsigned int nTransactionsUpdatedLast;
     if (!lpval.isNull())
@@ -635,7 +655,7 @@ UniValue getblocktemplate(const UniValue& params, bool fHelp)
 
     // Update nTime
     UpdateTime(pblock, consensusParams, pindexPrev);
-    pblock->nNonce = 0;
+    UpdateDiff(pblock, pindexPrev);
 
     // NOTE: If at some point we support pre-segwit miners post-segwit-activation, this needs to take segwit support into consideration
 //    const bool fPreSegWit = (THRESHOLD_ACTIVE != VersionBitsState(pindexPrev, consensusParams, Consensus::DEPLOYMENT_SEGWIT, versionbitscache));
@@ -697,10 +717,6 @@ UniValue getblocktemplate(const UniValue& params, bool fHelp)
     UniValue aRules(UniValue::VARR);
     UniValue vbavailable(UniValue::VOBJ);
     for (int i = 0; i < (int)Consensus::MAX_VERSION_BITS_DEPLOYMENTS; ++i) {
-        // MTP deployment has different set of rules
-        if (i == Consensus::DEPLOYMENT_MTP)
-            continue;
-
         Consensus::DeploymentPos pos = Consensus::DeploymentPos(i);
         ThresholdState state = VersionBitsState(pindexPrev, consensusParams, pos, versionbitscache);
         switch (state) {
@@ -774,18 +790,18 @@ UniValue getblocktemplate(const UniValue& params, bool fHelp)
     result.push_back(Pair("bits", strprintf("%08x", pblock->nBits)));
     result.push_back(Pair("height", (int64_t)(pindexPrev->nHeight+1)));
 
-    UniValue znodeObj(UniValue::VOBJ);
-    if(pblock->txoutZnode != CTxOut()) {
+    UniValue bznodeObj(UniValue::VOBJ);
+    if(pblock->txoutBznode != CTxOut()) {
         CTxDestination address1;
-        ExtractDestination(pblock->txoutZnode.scriptPubKey, address1);
+        ExtractDestination(pblock->txoutBznode.scriptPubKey, address1);
         CBitcoinAddress address2(address1);
-        znodeObj.push_back(Pair("payee", address2.ToString().c_str()));
-        znodeObj.push_back(Pair("script", HexStr(pblock->txoutZnode.scriptPubKey.begin(), pblock->txoutZnode.scriptPubKey.end())));
-        znodeObj.push_back(Pair("amount", pblock->txoutZnode.nValue));
+        bznodeObj.push_back(Pair("payee", address2.ToString().c_str()));
+        bznodeObj.push_back(Pair("script", HexStr(pblock->txoutBznode.scriptPubKey.begin(), pblock->txoutBznode.scriptPubKey.end())));
+        bznodeObj.push_back(Pair("amount", pblock->txoutBznode.nValue));
     }
-    result.push_back(Pair("znode", znodeObj));
-    result.push_back(Pair("znode_payments_started", pindexPrev->nHeight + 1 > Params().GetConsensus().nZnodePaymentsStartBlock));
-//    result.push_back(Pair("znode_payments_enforced", sporkManager.IsSporkActive(SPORK_8_MASTERNODE_PAYMENT_ENFORCEMENT)));
+    result.push_back(Pair("bznode", bznodeObj));
+    result.push_back(Pair("bznode_payments_started", sporkManager.IsSporkActive(SPORK_14_BZNODE_PAYMENT_START)));
+    result.push_back(Pair("bznode_payments_enforced", sporkManager.IsSporkActive(SPORK_15_BZNODE_PAYMENT_ENFORCEMENT)));
 
     const struct BIP9DeploymentInfo& segwit_info = VersionBitsDeploymentInfo[Consensus::DEPLOYMENT_SEGWIT];
     if (!pblocktemplate->vchCoinbaseCommitment.empty() && setClientRules.find(segwit_info.name) != setClientRules.end()) {

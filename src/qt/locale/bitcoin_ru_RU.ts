@@ -56,10 +56,10 @@
     <name>BanTableModel</name>
     </context>
 <context>
-    <name>ZcoinGUI</name>
+    <name>BitcoinZeroGUI</name>
     <message>
-        <source>Zcoin</source>
-        <translation>Zcoin Core</translation>
+        <source>BitcoinZero</source>
+        <translation>BitcoinZero Core</translation>
     </message>
     <message>
         <source>&amp;Command-line options</source>
@@ -216,14 +216,14 @@
     <name>WalletView</name>
     </context>
 <context>
-    <name>zcoin-core</name>
+    <name>BitcoinZero-Core</name>
     <message>
-        <source>Zcoin Core</source>
-        <translation>Zcoin Core</translation>
+        <source>BitcoinZero Core</source>
+        <translation>BitcoinZero Core</translation>
     </message>
     <message>
         <source>Whitelisted peers cannot be DoS banned and their transactions are always relayed, even if they are already in the mempool, useful e.g. for a gateway</source>
-        <translation>zcoin-core</translation>
+        <translation>BitcoinZero-Core</translation>
     </message>
     <message>
         <source>Information</source>

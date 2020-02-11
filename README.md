@@ -1,129 +1,104 @@
-Zcoin
-===============
+# Bitcoinzero [BZX] (Sigma) Core 2020
 
-[![latest-release](https://img.shields.io/github/release/zcoinofficial/zcoin)](https://github.com/zcoinofficial/zcoin/releases)
-[![GitHub last-release](https://img.shields.io/github/release-date/zcoinofficial/zcoin)](https://github.com/zcoinofficial/zcoin/releases)
-[![GitHub downloads](https://img.shields.io/github/downloads/zcoinofficial/zcoin/total)](https://github.com/zcoinofficial/zcoin/releases)
-[![GitHub commits-since-last-version](https://img.shields.io/github/commits-since/zcoinofficial/zcoin/latest/master)](https://github.com/zcoinofficial/zcoin/graphs/commit-activity)
-[![GitHub commits-per-month](https://img.shields.io/github/commit-activity/m/zcoinofficial/zcoin)](https://github.com/zcoinofficial/zcoin/graphs/code-frequency)
-[![GitHub last-commit](https://img.shields.io/github/last-commit/zcoinofficial/zcoin)](https://github.com/zcoinofficial/zcoin/commits/master)
-[![Total alerts](https://img.shields.io/lgtm/alerts/g/zcoinofficial/zcoin.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/zcoinofficial/zcoin/alerts/)
-[![Language grade: C/C++](https://img.shields.io/lgtm/grade/cpp/g/zcoinofficial/zcoin.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/zcoinofficial/zcoin/context:cpp)
+[![Build Status](https://travis-ci.org/BitcoinZeroOfficial/bitcoinzero.svg?branch=master)](https://travis-ci.org/BitcoinZeroOfficial/bitcoinzero)
 
-What is Zcoin?
---------------
+## Bitcoinzero
 
-[Zcoin](https://zcoin.io) is a privacy focused cryptocurrency that utilizes zero-knowledge proofs which allows users to destroy coins and then redeem them later for brand new ones with no transaction history. It was the first project to implement the Zerocoin protocol and has now transitioned to the [Sigma protocol](https://zcoin.io/what-is-sigma-and-why-is-it-replacing-zerocoin-in-zcoin/) which has no trusted setup and small proof sizes. Zcoin also utilises [Dandelion++](https://arxiv.org/abs/1805.11060) to obscure the originating IP of transactions without relying on any external services such as Tor/i2P.
+- Coin Suffix: BZX
+- Algorithm: Lyra2Z
+- Target Spacing: 150 Seconds
+- Retarget: every block
+- Confirmation: 6 Blocks
+- Maturity: 120 Blocks
+- Max Coins: 40,000,000 BZX
+- Min TX Fee: 0.001 BZX
+- Block Size: 4MB
 
-Zcoin developed and utilizes [Merkle Tree Proofs (MTP)](https://arxiv.org/pdf/1606.03588.pdf) as its Proof-of-Work algorithm which aims to be memory hard with fast verification.
+## Net Parameters
 
-How Zcoin’s Privacy Technology Compares to the Competition
---------------
-![A comparison chart of Zcoin’s solutions with other leading privacy technologies can be found below](https://zcoin.io/wp-content/uploads/2019/04/zcoin_table_coloured5-01.png) 
-read more https://zcoin.io/zcoins-privacy-technology-compares-competition/
+- P2P Port=29301
+- RPC Port=29202
+- Client core=13.4
+- Client name=bitcoinzero.qt
+- Conf file=bitcoinzero.conf
 
-Running with Docker
-===================
+## Installation folder
 
-If you are already familiar with Docker, then running Zcoin with Docker might be the the easier method for you. To run Zcoin using this method, first install [Docker](https://store.docker.com/search?type=edition&offering=community). After this you may
-continue with the following instructions.
+- Windows: C:\Users\Username\AppData\Roaming\bitcoinzero
+- Mac: /Library/Application Support/bitcoinzero
+- Unix: /.bitcoinzero
 
-Please note that we currently don't support the GUI when running with Docker. Therefore, you can only use RPC (via HTTP or the `zcoin-cli` utility) to interact with Zcoin via this method.
+# Debian/Ubuntu Linux Daemon Build Instructions
 
-Pull our latest official Docker image:
+    install dependencies:
+    Build a node or qt:
 
-```sh
-docker pull zcoinofficial/zcoind
-```
-
-Start Zcoin daemon:
-
-```sh
-docker run --detach --name zcoind zcoinofficial/zcoind
-```
-
-View current block count (this might take a while since the daemon needs to find other nodes and download blocks first):
-
-```sh
-docker exec zcoind zcoin-cli getblockcount
-```
-
-View connected nodes:
-
-```sh
-docker exec zcoind zcoin-cli getpeerinfo
-```
-
-Stop daemon:
-
-```sh
-docker stop zcoind
-```
-
-Backup wallet:
-
-```sh
-docker cp zcoind:/home/zcoind/.zcoin/wallet.dat .
-```
-
-Start daemon again:
-
-```sh
-docker start zcoind
-```
-
-Linux Build Instructions and Notes
-==================================
-
-Dependencies
-----------------------
-1.  Update packages
-
-        sudo apt-get update
-
-2.  Install required packages
-
-        sudo apt-get install build-essential libtool autotools-dev automake pkg-config libssl-dev libevent-dev bsdmainutils libboost-all-dev
-
-3.  Install Berkeley DB 4.8
-
-        sudo apt-get install software-properties-common
-        sudo add-apt-repository ppa:bitcoin/bitcoin
-        sudo apt-get update
-        sudo apt-get install libdb4.8-dev libdb4.8++-dev
-
-4.  Install QT 5
-
-        sudo apt-get install libminiupnpc-dev libzmq3-dev
-        sudo apt-get install libqt5gui5 libqt5core5a libqt5dbus5 qttools5-dev qttools5-dev-tools libprotobuf-dev protobuf-compiler libqrencode-dev
-
-Build
-----------------------
-1.  Clone the source:
-
-        git clone https://github.com/zcoinofficial/zcoin
-
-2.  Build Zcoin-core:
-
-    Configure and build the headless Zcoin binaries as well as the GUI (if Qt is found).
-
-    You can disable the GUI build by passing `--without-gui` to configure.
-        
-        ./autogen.sh
-        ./configure
-        make
-
-3.  It is recommended to build and run the unit tests:
-
-        make check
+    if you need a swap memory:
+    free
+    dd if=/dev/zero of=/var/swap.img bs=2048 count=1048576
+    mkswap /var/swap.img
+    swapon /var/swap.img
+    free
 
 
-macOS Build Instructions and Notes
-=====================================
-See (doc/build-macos.md) for instructions on building on macOS.
+    sudo apt-get update
+    sudo apt-get upgrade
 
+    sudo apt-get install git build-essential libtool autotools-dev automake pkg-config libssl-dev libevent-dev bsdmainutils libboost-all-dev
 
+    sudo apt-get install software-properties-common
+    sudo add-apt-repository ppa:bitcoin/bitcoin
+    sudo apt-get update
+    sudo apt-get install libdb4.8-dev libdb4.8++-dev
 
-Windows (64/32 bit) Build Instructions and Notes
-=====================================
-See (doc/build-windows.md) for instructions on building on Windows 64/32 bit.
+    sudo apt-get install libminiupnpc-dev libzmq3-dev
+    for qt:
+    sudo apt-get install libqt5gui5 libqt5core5a libqt5dbus5 qttools5-dev qttools5-dev-tools libprotobuf-dev protobuf-compiler libqrencode-dev
+
+    git clone https://github.com/BitcoinZeroOfficial/bitcoinzero
+
+    cd bitcoinzero
+    for vps:
+    ./autogen.sh
+    ./configure  --without-gui
+    make -j 4   (-j is optional, number of your cores, -j 4)
+
+    for qt:
+    ./autogen.sh
+    ./configure
+    make -j 4   (-j is optional, number of your cores, -j 4)
+
+    cd src
+    strip bitcoinzerod
+    strip bitcoinzero-cli
+    or:
+    cd src
+    cd qt
+    strip bitcoinzero-qt
+
+    files are:
+    bitcoinzerod
+    bitcoinzero-cli
+
+    bitcoinzero-qt
+    bitcoinzero.conf
+    bznode.conf
+    data folder:
+    bitcoinzero
+
+    port 29301
+    rpc port 29201
+
+# Example bitcoinzero.conf Configuration
+
+    rescan=0
+    listen=1
+    server=1
+    daemon=1
+    bznode=1
+    externalip=
+    bznodeprivkey=
+    addnode=node_ip
+    rpcallowip=127.0.0.1
+    rpcuser=MAKEUPYOUROWNUSERNAME
+    rpcpassword=MAKEUPYOUROWNPASSWORD
