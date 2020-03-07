@@ -17,7 +17,7 @@
 ## Net Parameters
 
 - P2P Port=29301
-- RPC Port=29202
+- RPC Port=29201
 - Client core=13.4
 - Client name=bitcoinzero.qt
 - Conf file=bitcoinzero.conf
