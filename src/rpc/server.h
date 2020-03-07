@@ -202,6 +202,7 @@ extern UniValue bznode(const UniValue& params, bool fHelp);
 extern UniValue bznodelist(const UniValue& params, bool fHelp);
 extern UniValue bznodebroadcast(const UniValue& params, bool fHelp);
 extern UniValue bznsync(const UniValue& params, bool fHelp);
+extern UniValue getmasternodecount(const UniValue& params, bool fHelp);
 
 extern void EnsureWalletIsUnlocked();
 

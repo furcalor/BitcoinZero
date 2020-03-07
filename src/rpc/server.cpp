@@ -282,8 +282,9 @@ static const CRPCCommand vRPCCommands[] =
     { "bitcoinzero",               "bznsync",                &bznsync,                 true  },
     { "bitcoinzero",               "bznodelist",             &bznodelist,              true  },
     { "bitcoinzero",               "bznodebroadcast",        &bznodebroadcast,         true  },
-    { "bitcoinzero",               "getpoolinfo",           &getpoolinfo,            true  },
-    { "BitcoinZero",               "spork",                 &spork,                  true  },
+    { "bitcoinzero",               "getmasternodecount",     &getmasternodecount,      true  },
+    { "bitcoinzero",               "getpoolinfo",            &getpoolinfo,             true  },
+    { "BitcoinZero",               "spork",                  &spork,                   true  },
 };
 
 CRPCTable::CRPCTable()
