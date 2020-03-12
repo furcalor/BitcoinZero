@@ -2108,16 +2108,16 @@ CAmount GetBlockSubsidy(int nHeight) {
     if (nHeight == 0) // Genesis block is 0 coins
         return 0;
 
-    else if (nHeight <= 46)
+    else if (nHeight <= HF_FORK_END)
         return 0 * COIN;
 
-    else if (nHeight <= 576)
+    else if (nHeight <= HF_FORK_REW)
         return 1 * COIN;
 
-    else if (nHeight <= )
+    else if (nHeight <= HF_FEE_FORK)
         return 30 * COIN;
 
-    else if (nHeight <= 1561687)
+    else if (nHeight <= HF_SIGMA_REW)
         return 75 * COIN;
 
     else
@@ -2126,13 +2126,13 @@ CAmount GetBlockSubsidy(int nHeight) {
 
 CAmount GetBznodePayment(int nHeight) {
 
-    if (nHeight <= 51000)
+    if (nHeight <= HF_FEE_FORK)
     {
     CAmount ret = 10.5 * COIN;
         return ret;
     }
 
-    else if (nHeight <= 1561687)
+    else if (nHeight <= HF_SIGMA_REW)
     {
     CAmount ret = 22 * COIN;
         return ret;
