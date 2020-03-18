@@ -17,7 +17,7 @@ Either
 <summary><strong>Download the prebuilt binaries</strong></summary>
 <strong>0.1</strong> Install prebuild client and full chain
 
-    wget https://github.com/SpecialCoins/BitcoinZero/releases/download/5.0.3.7/linux-x64.tar.gz
+    wget https://github.com/SpecialCoins/BitcoinZero/releases/download/5.0.3.8/linux-x64.tar.gz
     tar xvfz linux-x64.tar.gz
     ---
     (optional to remove old chain):
